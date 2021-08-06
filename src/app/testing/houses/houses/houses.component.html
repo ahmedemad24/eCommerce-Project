@@ -1,0 +1,56 @@
+<div class="container mt-5 pt-5 mb-5">
+  <div class="row justify-content-center">
+     <div>
+        <div >
+            <div >
+                <div class="text-center m-auto">
+                   <h2 class="text-uppercase text-center">CREATE ACCOUNT</h2>
+                </div>
+                <form [formGroup]="formModeule" autocomplete="off" (ngSubmit)="Save()" enctype="multipart/form-data" >
+
+                   <div class="form-group mb-3">
+                      <label for="fname">HouseCity </label>
+                      <input type="text"  placeholder="HouseCity" formControlName="City" class="form-control" >
+                   </div>
+                   <div class="form-group mb-3">
+                      <label for="fname"> HouseStreet </label>
+                      <input type="text"  placeholder="HouseStreet" formControlName="Street" class="form-control" >
+                   </div>
+                   <div class="form-group mb-3">
+                    <label for="fname"> Title </label>
+                    <input type="text"  placeholder="Title" formControlName="Title" class="form-control" >
+                 </div>
+                   <div class="form-group mb-3">
+                    <label for="fname">HouseCountry </label>
+                    <input type="text"  placeholder="HouseCountry" formControlName="Country" class="form-control" >
+                  </div>
+                  <div class="form-group mb-3">
+                    <label for="HouseDescription">House Description </label>
+                    <textarea name="HouseDescription" formControlName="HouseDescription"  class="form-control"   cols="30" rows="10"></textarea>
+                    <!-- <input type="text"  placeholder="HouseDescription" formControlName="HouseDescription" class="form-control" > -->
+                  </div>
+                  <div class="form-group mb-3">
+                      <label for="fname"> HouseNumber </label>
+                      <input type="text"  placeholder="HouseNumber" formControlName="number" class="form-control" >
+                  </div>
+
+                  <div class="form-group mb-3">
+                    <label for="fname"> HousePrice </label>
+                    <input type="text"  placeholder="HousePrice" formControlName="Price" class="form-control" >
+                  </div>
+
+                  <div class="form-group mb-3">
+                    <label for="fname"> images </label>
+                    <input class="form-control" type="file" #img placeholder="HousePrice"  accept="image/png, image/jpg, image/jpeg"  formControlName="HousePhotoFiles" (change)="onFileChange($event)" multiple  minlength="5" maxlength="5" required >
+                  </div>
+
+                  <div class="form-group mt-5 mb-5 d-flex justify-content-between">
+                      <button class="btn btn-dark btn-block col-3 mx-auto" type="submit"   > Add </button>
+                  </div>
+                </form>
+             </div>
+        </div>
+     </div>
+  </div>
+</div>
+

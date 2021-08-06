@@ -1,0 +1,116 @@
+
+<div class="container-fluid mycontainer mt-5 " style="margin-top: 120px !important;">
+  <div class="row ">
+    <div class="col-sm-12 col-xl-5 info   ">
+      <div class="text align-items-start flex-column">
+        <h2 class="h-text">Stays in {{ar.snapshot.params["City"]}} </h2>
+        <div class="anchors d-flex align-items-start  ">
+          <div class="innerdiv">
+            Filters :
+            <button (click)="toggleShow()" class="btn  border   mx-2 " style="padding: 5px 20px; border-radius: 10px;"  > Street </button>
+            <button (click)="toggleShow2()" class="btn  border   "  style="padding: 5px 20px; border-radius: 10px;" > price </button>
+            <button (click)="toggleShow3()" class="btn  border   " *ngIf="city" style="padding: 5px 20px; border-radius: 10px;" > Cityes </button>
+
+            <div class="row" *ngIf="isShown" >
+              <div class="col-md-6 mt-3 " >
+                <input type="text" class="form-control" [(ngModel)]="filterBySteert" placeholder="Filter By Street">
+            </div>
+          </div>
+
+          <div class="row" *ngIf="isShown3" >
+            <div class="col-md-6 mt-3 " >
+              <input type="text" class="form-control" [(ngModel)]="filterByCity" placeholder="Filter By City">
+          </div>
+        </div>
+
+          <div class="row">
+            <div class="col-md-6   " *ngIf="isShown2">
+              <h5> Price: {{filterByPrice}}</h5>
+              <p-slider [min]="0" [max]="200" [(ngModel)]="filterByPrice"></p-slider>
+            </div>
+          </div>
+
+
+          </div>
+        </div>
+        <p class="p-text">Review COVID-19 travel restrictions before you book </p>
+      </div>
+
+      <!-- Loop to Date Of House -->
+
+      <div *ngFor="let i of this.items |city:filterByCity  |price: filterByPrice |filter: filterBySteert | paginate: {
+        itemsPerPage: 5,
+         currentPage: page,
+          totalItems: TotalLength }">
+        <div class="card">
+          <div class="myline">
+          </div>
+
+          <div class="row">
+
+            <div class="col-sm-4 col-md-4  col-xl-5 col-lg-5 card-image">
+
+              <img src="http://localhost:42138/{{i.housePhotoName}}" class="d-block  w-100 im img-fluid  " alt="...">
+            </div>
+
+
+            <div class="col-sm-6 card-text d-flex align-items-start flex-column">
+              <div class="upper d-flex align-items-baseline">
+                <div class="medit">
+                  <p class="p-card-1">Meditation class in cairo</p>
+                </div>
+                <div class="heart">
+                  <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
+                    <mat-icon >favorite</mat-icon>
+                  </button>
+                </div>
+              </div>
+              <a routerLink="/House/HousesBooking/{{i.houseId}}">
+
+                <h2 class="h-card-1">{{i.title}}</h2>
+              </a>
+
+              <div class="innerline">
+
+              </div>
+              <h2 class="h-card-2">What we'll do:</h2>
+              <p class="p-card-2"> elnissimos illo quia quas architecto temporibus.</p>
+              <p class="p-card-time">10 hours.Up</p>
+
+
+              <div class="lower-part d-flex mt-auto p-2">
+                <div class="star d-flex align-items-baseline">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-star-fill mystar" viewBox="0 0 16 16">
+                    <path
+                      d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                  </svg>5.0(15)
+                </div>
+                <div class="price">
+                  <strong> ${{i.housePrice}}</strong>/night
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+      <div class="d-flex justify-content-center">
+        <pagination-controls
+
+          previousLabel="Prev"
+          nextLabel="Next"
+          (pageChange)="onTableDataChange($event)">
+        </pagination-controls>
+      </div>
+    </div>
+    <div class="col map myform  " style="height: 100vh !important;">
+      <p-gmap [options]="options" [overlays]="overlays" [style]="{'width':'100%','height':'100vh'}"></p-gmap>
+
+
+
+    </div>
+  </div>
+</div>
+
